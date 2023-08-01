@@ -1,0 +1,50 @@
+
+.footer {
+    background-color: blue;
+    padding: 20px 0;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .col {
+    flex: 0 0 calc(33.33% - 20px);
+    margin-bottom: 20px;
+  }
+  
+  .col h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  ul li {
+    margin-bottom: 5px;
+  }
+  
+  .social-icons {
+    font-size: 30px;
+  }
+  
+  .social-icons a {
+    margin-right: 10px;
+    color: #000;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: black;
+  }
+  
