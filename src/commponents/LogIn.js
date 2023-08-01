@@ -1,7 +1,39 @@
-import React from 'react';
-import '../css/LogIn.css'
+import React, { useState } from 'react';
+import '../css/LogIn.css';
 
 const Form = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+
+    // Prepare the data to be sent in the request body
+    const formData = {
+      email: email,
+      password: password,
+    };
+
+    // Make the POST request
+    fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data); // Log the response data to the console
+        // Assuming your response contains a property called 'loggedInUser'
+        // You can update the state with the logged-in user here
+        // For example, if your response contains a 'user' object:
+        // setLoggedInUser(data.user);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
   return (
     <>
       {/* Navbar */}
@@ -37,7 +69,7 @@ const Form = () => {
 
           {/* Registration Form */}
           <div className="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+          <form onSubmit={handleFormSubmit}>
               <div className="row">
 
                 {/* Email Address */}
@@ -53,6 +85,8 @@ const Form = () => {
                     name="email"
                     placeholder="Email Address"
                     className="form-control bg-white border-left-0 border-md"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -72,14 +106,16 @@ const Form = () => {
                     name="password"
                     placeholder="Password"
                     className="form-control bg-white border-left-0 border-md"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
                 {/* Submit Button */}
                 <div className="form-group col-lg-12 mx-auto mb-0">
-                  <a href="#" className="btn btn-primary btn-block py-2">
-                    <span className="font-weight-bold">Log In</span>
-                  </a>
+                <button type="submit" className="btn btn-primary btn-block py-2">
+                  <span className="font-weight-bold">Log In</span>
+                </button>
                 </div>
 
                 {/* Divider Text */}

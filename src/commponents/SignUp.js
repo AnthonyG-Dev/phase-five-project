@@ -1,5 +1,43 @@
+import React, { useState } from 'react';
 
 function Form() {
+  // State variables to store form data
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [job, setJob] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  // Function to handle form submission
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+  
+    const data = {
+      email,
+      password,
+      name: `${firstName} ${lastName}`,
+      course_id: 1,
+      avatar: 'avatar',
+      role: job
+    };
+  
+    // Post the data to the server
+    fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        console.log('Response:', response);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  };
+  
     return (
         <>
           {/* Navbar */}
@@ -41,113 +79,125 @@ function Form() {
     
               {/* Registration Form */}
               <div className="col-md-7 col-lg-6 ml-auto">
-                <form action="#">
-                  <div className="row">
-                    {/* First Name */}
-                    <div className="input-group col-lg-6 mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                          <i className="fa fa-user text-muted"></i>
-                        </span>
-                      </div>
-                      <input
-                        id="firstName"
-                        type="text"
-                        name="firstname"
-                        placeholder="First Name"
-                        className="form-control bg-white border-left-0 border-md"
-                      />
-                    </div>
-    
-                    {/* Last Name */}
-                    <div className="input-group col-lg-6 mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                          <i className="fa fa-user text-muted"></i>
-                        </span>
-                      </div>
-                      <input
-                        id="lastName"
-                        type="text"
-                        name="lastname"
-                        placeholder="Last Name"
-                        className="form-control bg-white border-left-0 border-md"
-                      />
-                    </div>
-    
-                    {/* Email Address */}
-                    <div className="input-group col-lg-12 mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                          <i className="fa fa-envelope text-muted"></i>
-                        </span>
-                      </div>
-                      <input
-                        id="email"
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        className="form-control bg-white border-left-0 border-md"
-                      />
-                    </div>
-    
-                    {/* Job */}
-                    <div className="input-group col-lg-12 mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                          <i className="fa fa-black-tie text-muted"></i>
-                        </span>
-                      </div>
-                      <select
-                        id="job"
-                        name="jobtitle"
-                        className="form-control custom-select bg-white border-left-0 border-md"
-                      >
-                        <option value="">Choose your job</option>
-                        <option value="">TM</option>
-                        <option value="">Student</option>
-                      </select>
-                    </div>
-    
-                    {/* Password */}
-                    <div className="input-group col-lg-6 mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                          <i className="fa fa-lock text-muted"></i>
-                        </span>
-                      </div>
-                      <input
-                        id="password"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        className="form-control bg-white border-left-0 border-md"
-                      />
-                    </div>
-    
-                    {/* Password Confirmation */}
-                    <div className="input-group col-lg-6 mb-4">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-white px-4 border-md border-right-0">
-                          <i className="fa fa-lock text-muted"></i>
-                        </span>
-                      </div>
-                      <input
-                        id="passwordConfirmation"
-                        type="text"
-                        name="passwordConfirmation"
-                        placeholder="Confirm Password"
-                        className="form-control bg-white border-left-0 border-md"
-                      />
-                    </div>
-    
-                    {/* Submit Button */}
-                    <div className="form-group col-lg-12 mx-auto mb-0">
-                      <a href="#" className="btn btn-primary btn-block py-2">
-                        <span className="font-weight-bold">Create your account</span>
-                      </a>
-                    </div>
-    
+        <form onSubmit={handleSubmit} action="#">
+          <div className="row">
+            {/* First Name */}
+            <div className="input-group col-lg-6 mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                  <i className="fa fa-user text-muted"></i>
+                </span>
+              </div>
+              <input
+                id="firstName"
+                type="text"
+                name="firstname"
+                placeholder="First Name"
+                className="form-control bg-white border-left-0 border-md"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+            </div>
+
+            {/* Last Name */}
+            <div className="input-group col-lg-6 mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                  <i className="fa fa-user text-muted"></i>
+                </span>
+              </div>
+              <input
+                id="lastName"
+                type="text"
+                name="lastname"
+                placeholder="Last Name"
+                className="form-control bg-white border-left-0 border-md"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </div>
+
+            {/* Email Address */}
+            <div className="input-group col-lg-12 mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                  <i className="fa fa-envelope text-muted"></i>
+                </span>
+              </div>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                className="form-control bg-white border-left-0 border-md"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+
+            {/* Job */}
+            <div className="input-group col-lg-12 mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                  <i className="fa fa-black-tie text-muted"></i>
+                </span>
+              </div>
+              <select
+                id="job"
+                name="jobtitle"
+                className="form-control custom-select bg-white border-left-0 border-md"
+                value={job}
+                onChange={(e) => setJob(e.target.value)}
+              >
+                <option value="">Choose your role</option>
+                <option value="TM">TM</option>
+                <option value="Student">Student</option>
+              </select>
+            </div>
+
+            {/* Password */}
+            <div className="input-group col-lg-6 mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                  <i className="fa fa-lock text-muted"></i>
+                </span>
+              </div>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                placeholder="Password"
+                className="form-control bg-white border-left-0 border-md"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+
+            {/* Password Confirmation */}
+            <div className="input-group col-lg-6 mb-4">
+              <div className="input-group-prepend">
+                <span className="input-group-text bg-white px-4 border-md border-right-0">
+                  <i className="fa fa-lock text-muted"></i>
+                </span>
+              </div>
+              <input
+                id="passwordConfirmation"
+                type="password"
+                name="passwordConfirmation"
+                placeholder="Confirm Password"
+                className="form-control bg-white border-left-0 border-md"
+                value={passwordConfirmation}
+                onChange={(e) => setPasswordConfirmation(e.target.value)}
+              />
+            </div>
+
+            {/* Submit Button */}
+            <div className="form-group col-lg-12 mx-auto mb-0">
+              <button type="submit" className="btn btn-primary btn-block py-2">
+                <span className="font-weight-bold">Create your account</span>
+              </button>
+            </div>
+
                     {/* Divider Text */}
                     <div className="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
                       <div className="border-bottom w-100 ml-5"></div>
