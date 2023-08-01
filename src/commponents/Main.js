@@ -6,7 +6,7 @@ function Main() {
     <header className="App-header">
     <img src="#" alt="" />
     <p>
-      <code>Welcome to Class Sync</code>
+      <code>Welcome to </code>
     </p>
     <h2>Class Sync</h2>
     <p>
