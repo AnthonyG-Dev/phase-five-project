@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 
 function Form() {
   // State variables to store form data
@@ -6,20 +6,32 @@ function Form() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [job, setJob] = useState('');
+  const [course, setCourse] = useState([]); // This will hold the courses fetched from the server
+  const [currentCourse, setCurrentCourse] = useState(''); // This will hold the selected course object
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
+
+  useEffect(() => {
+    // Fetch the list of courses from the server when the component mounts
+    fetch('http://localhost:3000/courses')
+      .then((response) => response.json())
+      .then((data) => setCourse(data))
+      .catch((error) => console.error('Error:', error));
+  }, []);;
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
   
-    const data = {
-      email,
-      password,
-      name: `${firstName} ${lastName}`,
-      course_id: 1,
-      avatar: 'avatar',
-      role: job
+    const userData = {
+      user: {
+        name:`${firstName} ${lastName}`,
+        email,
+        password,
+        avatar: 'avatar', // Set the value you want for the avatar
+        role: 'role', // Set the value you want for the role
+        course_id: currentCourse.id, // Set the value you want for the course_id
+      },
     };
   
     // Post the data to the server
@@ -28,7 +40,7 @@ function Form() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userData),
     })
       .then((response) => {
         console.log('Response:', response);
@@ -37,6 +49,7 @@ function Form() {
         console.error('Error:', error);
       });
   };
+  
   
     return (
         <>
@@ -141,7 +154,7 @@ function Form() {
                 <span className="input-group-text bg-white px-4 border-md border-right-0">
                   <i className="fa fa-black-tie text-muted"></i>
                 </span>
-              </div>
+                </div>
               <select
                 id="job"
                 name="jobtitle"
@@ -152,9 +165,29 @@ function Form() {
                 <option value="">Choose your role</option>
                 <option value="TM">TM</option>
                 <option value="Student">Student</option>
-              </select>
-            </div>
-
+                </select><br/>
+                {/* Course */}
+                <div className="input-group col-lg-12 mb-4">
+                  <div className="input-group-prepend">
+                      <span className="input-group-text bg-white px-4 border-md border-right-0">
+                         <i className="fa fa-envelope text-muted"></i>
+                     </span>
+                </div>
+                <select
+                    id="course"
+                    name="course"
+                    className="form-control bg-white border-left-0 border-md"
+                    value={currentCourse}
+                    onChange={(e) => setCurrentCourse(JSON.parse(e.target.value))}
+                >
+                    <option value="">Choose your course</option>
+                    {course.map((c) => (
+                    <option key={c.id} value={JSON.stringify(c)}>
+                        {c.name}
+                    </option>
+                    ))}
+                </select>
+                </div>
             {/* Password */}
             <div className="input-group col-lg-6 mb-4">
               <div className="input-group-prepend">
@@ -205,24 +238,13 @@ function Form() {
                       <div className="border-bottom w-100 mr-5"></div>
                     </div>
     
-                    {/* Social Login */}
-                    <div className="form-group col-lg-12 mx-auto">
-                      <a href="#" className="btn btn-primary btn-block py-2 btn-facebook">
-                        <i className="fa fa-facebook-f mr-2"></i>
-                        <span className="font-weight-bold">Continue with Facebook</span>
-                      </a>
-                      <a href="#" className="btn btn-primary btn-block py-2 btn-twitter">
-                        <i className="fa fa-twitter mr-2"></i>
-                        <span className="font-weight-bold">Continue with Twitter</span>
-                      </a>
-                    </div>
-    
                     {/* Already Registered */}
                     <div className="text-center w-100">
                       <p className="text-muted font-weight-bold">
                         Already Registered? <a href="/login" className="text-primary ml-2">Login</a>
                       </p>
                     </div>
+                  </div>
                   </div>
                 </form>
               </div>
