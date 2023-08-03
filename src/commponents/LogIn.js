@@ -1,39 +1,45 @@
 import React, { useState } from 'react';
 import '../css/LogIn.css';
+import { useNavigate, Link } from "react-router-dom";
 
 const Form = () => {
+  const nav = useNavigate()
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+  
     // Prepare the data to be sent in the request body
     const formData = {
       email: email,
       password: password,
     };
-
+  
     // Make the POST request
-    fetch('http://localhost:3000/auth/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // Log the response data to the console
-        // Assuming your response contains a property called 'loggedInUser'
-        // You can update the state with the logged-in user here
-        // For example, if your response contains a 'user' object:
-        // setLoggedInUser(data.user);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+  
+      if (response.ok) {
+        // Login was successful, navigate to the /calendar page
+        nav('/calendar');
+      } else {
+        // Login failed, show an alert
+        alert('Login failed. Please check your email and password.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while logging in. Please try again.');
+    }
   };
+  
   return (
     <>
       {/* Navbar */}
