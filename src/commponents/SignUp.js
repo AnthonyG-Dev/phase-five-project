@@ -1,7 +1,10 @@
 import React, { useState , useEffect } from 'react';
+import { useNavigate, Link } from "react-router-dom";
 
 function Form() {
   // State variables to store form data
+  const nav = useNavigate()
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -23,32 +26,46 @@ function Form() {
   const handleSubmit = async (event) => {
     event.preventDefault();
   
+    // Check if passwords match
+    if (password !== passwordConfirmation) {
+      alert('Passwords do not match. Please try again.');
+      return;
+    }
+  
     const userData = {
       user: {
-        name:`${firstName} ${lastName}`,
+        name: `${firstName} ${lastName}`,
         email,
         password,
         avatar: 'avatar', // Set the value you want for the avatar
-        role: 'role', // Set the value you want for the role
+        role: job, // Set the value you want for the role
         course_id: currentCourse.id, // Set the value you want for the course_id
       },
     };
   
-    // Post the data to the server
-    fetch('http://localhost:3000/users', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    })
-      .then((response) => {
-        console.log('Response:', response);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
+    try {
+      // Post the data to the server
+      const response = await fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
       });
+  
+      if (response.ok) {
+        // New user was created successfully, navigate to the /login page
+        nav('/login');
+      } else {
+        // New user creation failed, show an alert
+        alert('Failed to create a new user. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred while creating a new user. Please try again.');
+    }
   };
+  
   
   
     return (
