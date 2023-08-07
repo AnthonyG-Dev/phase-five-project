@@ -34,9 +34,9 @@ const Form = ({onLoginSuccess}) => {
         // Store the login state in localStorage
         localStorage.setItem('loggedInUser', JSON.stringify(responseData));
 
-        nav('/calendar');
+        nav('/home');
       } else {
-        // ... existing code ...
+        alert('wrong username or password')
       }
     } catch (error) {
       // ... existing code ...
