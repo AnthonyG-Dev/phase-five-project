@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../css/LogIn.css';
 import { useNavigate, Link } from "react-router-dom";
 
-const Form = () => {
+const Form = ({onLoginSuccess}) => {
   const nav = useNavigate()
 
   const [email, setEmail] = useState('');
@@ -10,13 +10,13 @@ const Form = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Prepare the data to be sent in the request body
     const formData = {
       email: email,
       password: password,
     };
-  
+
     // Make the POST request
     try {
       const response = await fetch('http://localhost:3000/auth/login', {
@@ -26,17 +26,20 @@ const Form = () => {
         },
         body: JSON.stringify(formData),
       });
-  
+
       if (response.ok) {
-        // Login was successful, navigate to the /calendar page
+        const responseData = await response.json();
+        onLoginSuccess(responseData);
+
+        // Store the login state in localStorage
+        localStorage.setItem('loggedInUser', JSON.stringify(responseData));
+
         nav('/calendar');
       } else {
-        // Login failed, show an alert
-        alert('Login failed. Please check your email and password.');
+        // ... existing code ...
       }
     } catch (error) {
-      console.error('Error:', error);
-      alert('An error occurred while logging in. Please try again.');
+      // ... existing code ...
     }
   };
   
@@ -49,7 +52,7 @@ const Form = () => {
             {/* Navbar Brand */}
             <a href="#" className="navbar-brand">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKPw8C2wNzWMrulT2hB4qBKC7iYvaiHdhYUw&usqp=CAU"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZue5Qh16KI0YygLmKvL6cTLdL4BGwkUeeAg&usqp=CAU"
                 alt="logo"
                 width="150"
               />
@@ -129,18 +132,6 @@ const Form = () => {
                   <div className="border-bottom w-100 ml-5"></div>
                   <span className="px-2 small text-muted font-weight-bold text-muted">OR</span>
                   <div className="border-bottom w-100 mr-5"></div>
-                </div>
-
-                {/* Social Login */}
-                <div className="form-group col-lg-12 mx-auto">
-                  <a href="#" className="btn btn-primary btn-block py-2 btn-facebook">
-                    <i className="fa fa-facebook-f mr-2"></i>
-                    <span className="font-weight-bold">Continue with Facebook</span>
-                  </a>
-                  <a href="#" className="btn btn-primary btn-block py-2 btn-twitter">
-                    <i className="fa fa-twitter mr-2"></i>
-                    <span className="font-weight-bold">Continue with Twitter</span>
-                  </a>
                 </div>
 
                 {/* Already Registered */}

@@ -1,7 +1,8 @@
 import React, { useState , useEffect } from 'react';
 import { useNavigate, Link } from "react-router-dom";
+import '../css/SignUp.css'
 
-function Form() {
+function Form({course}) {
   // State variables to store form data
   const nav = useNavigate()
 
@@ -9,18 +10,9 @@ function Form() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [job, setJob] = useState('');
-  const [course, setCourse] = useState([]); // This will hold the courses fetched from the server
   const [currentCourse, setCurrentCourse] = useState(''); // This will hold the selected course object
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
-
-  useEffect(() => {
-    // Fetch the list of courses from the server when the component mounts
-    fetch('http://localhost:3000/courses')
-      .then((response) => response.json())
-      .then((data) => setCourse(data))
-      .catch((error) => console.error('Error:', error));
-  }, []);;
 
   // Function to handle form submission
   const handleSubmit = async (event) => {
@@ -77,7 +69,7 @@ function Form() {
                 {/* Navbar Brand */}
                 <a href="#" className="navbar-brand">
                   <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKPw8C2wNzWMrulT2hB4qBKC7iYvaiHdhYUw&usqp=CAU"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZue5Qh16KI0YygLmKvL6cTLdL4BGwkUeeAg&usqp=CAU"
                 alt="logo"
                     width="150"
                   />
@@ -166,7 +158,7 @@ function Form() {
             </div>
 
             {/* Job */}
-            <div className="input-group col-lg-12 mb-4">
+            <div className="input-group col-lg-12 mb-4 ms-1">
               <div className="input-group-prepend">
                 <span className="input-group-text bg-white px-4 border-md border-right-0">
                   <i className="fa fa-black-tie text-muted"></i>
@@ -175,36 +167,37 @@ function Form() {
               <select
                 id="job"
                 name="jobtitle"
-                className="form-control custom-select bg-white border-left-0 border-md"
+                className="form-select custom-select bg-white border-left-0 border-md"
                 value={job}
                 onChange={(e) => setJob(e.target.value)}
               >
                 <option value="">Choose your role</option>
                 <option value="TM">TM</option>
                 <option value="Student">Student</option>
-                </select><br/>
-                {/* Course */}
-                <div className="input-group col-lg-12 mb-4">
-                  <div className="input-group-prepend">
-                      <span className="input-group-text bg-white px-4 border-md border-right-0">
-                         <i className="fa fa-envelope text-muted"></i>
-                     </span>
-                </div>
-                <select
-                    id="course"
-                    name="course"
-                    className="form-control bg-white border-left-0 border-md"
-                    value={currentCourse}
-                    onChange={(e) => setCurrentCourse(JSON.parse(e.target.value))}
-                >
-                    <option value="">Choose your course</option>
-                    {course.map((c) => (
-                    <option key={c.id} value={JSON.stringify(c)}>
-                        {c.name}
-                    </option>
-                    ))}
                 </select>
-                </div>
+            </div>
+                {/* Course */}
+            <div className="input-group col-lg-12 mb-4">
+              <div className="input-group-prepend">
+                  <span className="input-group-text bg-white px-4 border-md border-right-0">
+                      <i className="fa fa-envelope text-muted"></i>
+                  </span>
+            </div>
+            <select
+                id="course"
+                name="course"
+                className="form-select bg-white border-left-0 border-md"
+                value={currentCourse}
+                onChange={(e) => setCurrentCourse(JSON.parse(e.target.value))}
+            >
+                <option value="">Choose your course</option>
+                {course.map((c) => (
+                <option key={c.id} value={JSON.stringify(c)}>
+                    {c.name}
+                </option>
+                ))}
+            </select>
+            </div>
             {/* Password */}
             <div className="input-group col-lg-6 mb-4">
               <div className="input-group-prepend">
@@ -261,7 +254,6 @@ function Form() {
                         Already Registered? <a href="/login" className="text-primary ml-2">Login</a>
                       </p>
                     </div>
-                  </div>
                   </div>
                 </form>
               </div>

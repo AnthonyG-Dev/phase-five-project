@@ -1,4 +1,5 @@
-import './App.css';   
+import './App.css'; 
+import React, { useState , useEffect } from 'react';
 import Footer from './commponents/Footer'; 
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import SignUp from './commponents/SignUp'; 
@@ -12,6 +13,56 @@ import Feed from "./routes/Feed";
 import Navbar from './commponents/Navbar';
 
 function App() {
+
+  const [course, setCourse] = useState([]); 
+  const [users, setUsers] = useState([]); 
+  const [comments, setComments] = useState([]); 
+  const [sessions, setSessions] = useState([]); 
+  const [loggedInUser, setLoggedInUser] = useState(null)
+
+  useEffect(() => {
+  // Retrieve the login state from localStorage on component mount
+  const storedUser = localStorage.getItem('loggedInUser');
+  if (storedUser) {
+    const parsedUser = JSON.parse(storedUser);
+    setLoggedInUser(parsedUser);
+  }
+
+  // Fetch the list of courses from the server when the component mounts
+  fetch('http://localhost:3000/courses')
+    .then((response) => response.json())
+    .then((data) => setCourse(data))
+    .catch((error) => console.error('Error:', error));
+    
+    fetch('http://localhost:3000/comments')
+    .then((response) => response.json())
+    .then((data) => setComments(data))
+    .catch((error) => console.error('Error:', error));    
+
+    fetch('http://localhost:3000/users')
+      .then((response) => response.json())
+      .then((data) => setUsers(data))
+      .catch((error) => console.error('Error:', error));
+
+  // Fetch the list of sessions from the server when the component mounts
+  fetch('http://localhost:3000/sessions')
+    .then((response) => response.json())
+    .then((data) => setSessions(data))
+    .catch((error) => console.error('Error:', error));
+}, []);
+
+
+
+const handleLoginSuccess = (responseData) => {
+  setLoggedInUser(responseData);
+};
+
+// Function to handle user logout
+const handleLogout = () => {
+  // Clear the login state from localStorage and from the component state
+  localStorage.removeItem('loggedInUser');
+  setLoggedInUser(null);
+};
   return ( 
     <>
     <Navbar />
@@ -21,10 +72,10 @@ function App() {
             <Main/>
           }/>
           <Route path="/signup" element={
-            <SignUp/>
+            <SignUp course={course}/>
           }/>
           <Route path="/login" element={
-          <LogIn/>
+            <LogIn onLoginSuccess={handleLoginSuccess} />
           } />
           <Route path="/" element={
           <Home/>
@@ -36,7 +87,7 @@ function App() {
           <Announcement/>
           } />
           <Route path="/feed" element={
-          <Feed/>
+          <Feed sessions={sessions} loggedInUser={loggedInUser} course={course} comments={comments}  setComments={setComments} users={users}/>
           } />
         </Routes>
         <Footer/>
