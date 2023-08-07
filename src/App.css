@@ -79,7 +79,7 @@
 
 /* Navbar CSS */
 .navbar {
-  background-color: #ffffff;
+  background-color: #007bff;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -94,7 +94,7 @@
 }
 
 .nav-menu {
-  background-color: #ffffff;
+  background-color: #007bff;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -132,7 +132,7 @@
 }
 
 .nav-text a:hover {
-  background-color: #000000;
+  background-color: #007bff;
   color: #fff;
 }
 
@@ -141,7 +141,7 @@
 }
 
 .navbar-toggle {
-  background-color: #ffffff;
+  background-color: #007bff;
   width: 100%;
   height: 80px;
   display: flex;
@@ -151,5 +151,9 @@
 
 span {
   margin-left: 16px;
+}
+
+.footer_cont{
+  margin-bottom: -1000px;
 }
 

@@ -6,10 +6,13 @@ import { SidebarData } from "./SidebarData";
 import "../App.css";
 import { IconContext } from 'react-icons';
 
-function Navbar() {
+function Navbar(loggedInUser) {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  // Check if the role is "TM"
+  const isAdmin = loggedInUser.loggedInUser.role === "TM";
 
   return (
     <>
@@ -36,6 +39,15 @@ function Navbar() {
                 </li>
               );
             })}
+            {/* Conditionally add the "Admin" link if the user is "TM" */}
+            {isAdmin && (
+              <li className="nav-text">
+                <Link to="/admin">
+                  <AiIcons.AiFillHome />
+                  <span>Admin</span>
+                </Link>
+              </li>
+            )}
           </ul>
         </nav>
       </IconContext.Provider>

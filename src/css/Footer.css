@@ -1,6 +1,6 @@
 
 .footer {
-    background-color: blue;
+    background-color: #007bff;
     padding: 20px 0;
   }
   
@@ -48,3 +48,6 @@
     color: black;
   }
   
+  .test{
+    color: #00ffff;
+  }
