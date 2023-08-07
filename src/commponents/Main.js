@@ -14,10 +14,10 @@ function Main() {
     </p>
     <div className="btn-group">
       <NavLink to="/signup"> {/* Link the button to the "/signup" route */}
-        <button>SignUp</button>
+        <button className='login_btn'>SignUp</button>
       </NavLink>
       <NavLink to="/login"> {/* Link the "LogIn" button to the "/login" route (if needed) */}
-        <button>LogIn</button>
+        <button className='login_btn'>LogIn</button>
       </NavLink>
     </div>
   </header>

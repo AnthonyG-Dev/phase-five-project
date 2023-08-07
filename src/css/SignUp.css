@@ -5,3 +5,11 @@
   font-weight: bold;
 
 }
+
+.input-group input{
+  height: 40px !important;
+}
+
+.input-group-prepend span{
+  height: 51.5px;
+}
