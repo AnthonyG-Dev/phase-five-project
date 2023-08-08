@@ -142,6 +142,10 @@
   color: #fff;
 }
 
+.nav-text a:active {
+  transform: scale(.9);
+}
+
 .nav-menu-items {
   width: 100%;
 }
@@ -161,5 +165,9 @@ span {
 
 .footer_cont{
   margin-bottom: -1000px;
+}
+
+#nav_bar_log_out a:hover{
+  background-color: red;
 }
 

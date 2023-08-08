@@ -118,6 +118,7 @@ function Form({course}) {
                 className="form-control bg-white border-left-0 border-md"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
+                required
               />
             </div>
 
@@ -136,6 +137,7 @@ function Form({course}) {
                 className="form-control bg-white border-left-0 border-md"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
+                required
               />
             </div>
 
@@ -154,6 +156,7 @@ function Form({course}) {
                 className="form-control bg-white border-left-0 border-md"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -170,6 +173,7 @@ function Form({course}) {
                 className="form-select custom-select bg-white border-left-0 border-md"
                 value={job}
                 onChange={(e) => setJob(e.target.value)}
+                required
               >
                 <option value="">Choose your role</option>
                 <option value="TM">TM</option>
@@ -213,6 +217,7 @@ function Form({course}) {
                 className="form-control bg-white border-left-0 border-md"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
               />
             </div>
 
@@ -231,6 +236,7 @@ function Form({course}) {
                 className="form-control bg-white border-left-0 border-md"
                 value={passwordConfirmation}
                 onChange={(e) => setPasswordConfirmation(e.target.value)}
+                required
               />
             </div>
 

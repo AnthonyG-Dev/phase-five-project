@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
 import { Chart } from "chart.js/auto"; // Use 'chart.js/auto' for automatic imports
 import '../css/Home.css'
+import { IconContext } from 'react-icons';
+import * as FaIcons from 'react-icons/fa';
+import * as AiIcons from 'react-icons/ai';
+import * as IoIcons from 'react-icons/io';
 
 const colors = ['#007bff', '#00ffff', '#c5c5c5', '#c3e6cb', '#dc3545', '#6c757d'];
 
-const Home = () => {
+const Home = ( loggedInUser) => {
   const donutOptions = {
     cutoutPercentage: 85,
     legend: {
@@ -182,7 +186,7 @@ const Home = () => {
         {
           backgroundColor: colors.slice(0, 3),
           borderWidth: 0,
-          data: [21, 45, 55, 33],
+          data: [21, 45, 33],
         },
       ],
     };
@@ -198,12 +202,19 @@ const Home = () => {
   }, []);
 
   return (
+    <>
+    <h3 className="Dashboard">Dashboard</h3>
+    <div className="home_links_div">
+      <a id="home_link_left" className="home_links" href='/calendar'><IoIcons.IoIosPaper /> {loggedInUser.loggedInUser.name}'s Upcoming Events <IoIcons.IoIosPaper /></a>
+      <a  id="home_link_center" className="home_links"href='/announcements'><FaIcons.FaBullhorn /> What has {loggedInUser.loggedInUser.name} missed ? <FaIcons.FaBullhorn /></a>
+      <a href="/feed" id="home_link_right" className="home_links"><FaIcons.FaChalkboard />Catch Up With {loggedInUser.loggedInUser.name}'s Classes<FaIcons.FaChalkboard /></a>
+    </div>
     <div id="chart_container" className="container" >
       <div className="row my-3">
         <div className="col">
         </div>
       </div>
-      <h3>Dashboard</h3>
+
       <div className="row my-2">
         <div className="col-md-6 py-1">
           <div className="card">
@@ -249,6 +260,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

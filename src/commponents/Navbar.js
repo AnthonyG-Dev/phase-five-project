@@ -43,11 +43,18 @@ function Navbar(loggedInUser) {
             {isAdmin && (
               <li className="nav-text">
                 <Link to="/admin">
-                  <AiIcons.AiFillHome />
+                  <AiIcons.AiOutlinePlus />
                   <span>Schedule Classes</span>
                 </Link>
               </li>
             )}
+            {/* Add the "Logout" link */}
+            <li id="nav_bar_log_out" className="nav-text">
+              <Link to="/login">
+                <AiIcons.AiOutlineLogout />
+                <span>Logout</span>
+              </Link>
+            </li>
           </ul>
         </nav>
       </IconContext.Provider>

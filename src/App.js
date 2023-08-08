@@ -79,7 +79,7 @@ function App() {
         <Route path="/" element={<Main />} />
         <Route path="/signup" element={<SignUp course={course} />} />
         <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home loggedInUser={loggedInUser}/>} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/announcement" element={<Announcement />} />
         <Route path="/feed" element={ <Feed sessions={sessions} loggedInUser={loggedInUser} course={course} comments={comments} setComments={setComments}  users={users} />}/>
