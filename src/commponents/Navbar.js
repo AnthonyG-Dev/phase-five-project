@@ -44,7 +44,7 @@ function Navbar(loggedInUser) {
               <li className="nav-text">
                 <Link to="/admin">
                   <AiIcons.AiFillHome />
-                  <span>Admin</span>
+                  <span>Schedule Classes</span>
                 </Link>
               </li>
             )}

@@ -1,6 +1,6 @@
 .session_div{
     border-top: 2px solid rgb(223, 223, 223);
-    margin-bottom: 0.5%;
+    padding-top: 1.5%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -51,4 +51,8 @@
 .comment-form{
     height: 50px;
     width: 90%;
+}
+
+#comments_button{
+    height: 30%;
 }

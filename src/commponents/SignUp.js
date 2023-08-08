@@ -100,8 +100,8 @@ function Form({course}) {
               </div>
     
               {/* Registration Form */}
-              <div className="col-md-7 col-lg-6 ml-auto">
-        <form onSubmit={handleSubmit} action="#">
+              <div className="col-md-7 -lg-6 ml-auto">
+        <form className='sign_up_form' onSubmit={handleSubmit} action="#">
           <div className="row">
             {/* First Name */}
             <div className="input-group col-lg-6 mb-4">
@@ -158,7 +158,7 @@ function Form({course}) {
             </div>
 
             {/* Job */}
-            <div className="input-group col-lg-12 mb-4 ms-1">
+            <div className="input-group col-lg-12 mb-4">
               <div className="input-group-prepend">
                 <span className="input-group-text bg-white px-4 border-md border-right-0">
                   <i className="fa fa-black-tie text-muted"></i>
