@@ -1,4 +1,10 @@
+body{
+    overflow-x: hidden;
+}
+
 #chart_container{
     position: relative;
-    left: 5%;
+    left: 9%;
+    padding-right: 0;
+    margin-right: 0;
 }

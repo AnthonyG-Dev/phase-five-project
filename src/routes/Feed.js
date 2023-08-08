@@ -85,15 +85,17 @@ const Feed = ({ sessions, loggedInUser, course, comments, setComments, users }) 
               Course Name: <span className='course_name'>{getCourseName(session.course_id)}</span>
             </p>
             <h6>
-              starts at:.. {session.start} <br />
+              starts at:.. {session.start} <br /><br/>
               ends at:.... {session.end}
             </h6>
+            <h6>
             To view the session{' '}
             <a href={session.link} target='_blank' rel='noopener noreferrer'>
               click here
             </a>
+            </h6>
             <br />
-            <button type='button' className='btn btn-primary' data-bs-toggle='modal' data-bs-target={`#comments-modal-${session.id}`}>
+            <button id='comments_button' type='button' className='btn btn-primary' data-bs-toggle='modal' data-bs-target={`#comments-modal-${session.id}`}>
               Comments
             </button>
           </div>

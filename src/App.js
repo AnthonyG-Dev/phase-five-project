@@ -11,6 +11,7 @@ import Calendar from "./routes/Calendar";
 import Feed from "./routes/Feed";
 import Navbar from './commponents/Navbar';
 import Footer from './commponents/Footer';
+import Admin from './commponents/Admin';
 
 function App() {
   const [course, setCourse] = useState([]);
@@ -81,16 +82,12 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/calendar" element={<Calendar />} />
         <Route path="/announcement" element={<Announcement />} />
-        <Route
-          path="/feed"
-          element={
-            <Feed sessions={sessions} loggedInUser={loggedInUser} course={course} comments={comments} setComments={setComments}  users={users} />
-          }
-        />
+        <Route path="/feed" element={ <Feed sessions={sessions} loggedInUser={loggedInUser} course={course} comments={comments} setComments={setComments}  users={users} />}/>
+        <Route path="/Admin" element={<Admin sessions={sessions} course={course}/>} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
-}
+} 
 
 export default App;
