@@ -48,10 +48,14 @@ function Admin({ sessions }) {
     };
 
     const handleDelete = sessionId => {
-        // Perform DELETE request to delete a session
-        fetch(`http://localhost:3000/sessions/${sessionId}`, {
-            method: 'DELETE',
-        })
+        // Display a confirmation dialog
+        const isConfirmed = window.confirm("Are you sure you want to delete this session?");
+    
+        if (isConfirmed) {
+            // Perform DELETE request to delete a session
+            fetch(`http://localhost:3000/sessions/${sessionId}`, {
+                method: 'DELETE',
+            })
             .then(response => {
                 if (response.status === 204) {
                     // Remove the deleted session from the sessions array
@@ -60,8 +64,12 @@ function Admin({ sessions }) {
                 }
             })
             .catch(error => console.error('Error:', error));
-            window.location.reload()
+    
+            // Reload the page after deletion
+            window.location.reload();
+        }
     };
+    
 
 
     return (
@@ -69,10 +77,10 @@ function Admin({ sessions }) {
             <div className='admin_form_div'>
                 <h5>Schedule a new Lesson</h5>
                 <form className='admin_form' onSubmit={handleSubmit}>
-                    <input type="time" name="start" placeholder='start' value={newSession.start} onChange={handleInputChange} />
-                    <input type="time" name="end" placeholder='end' value={newSession.end} onChange={handleInputChange} />
-                    <input type="text" name="link" placeholder='link' value={newSession.link} onChange={handleInputChange} />
-                    <select name="course_id" value={newSession.course_id} onChange={handleInputChange}>
+                    <input type="time" name="start" placeholder='start' value={newSession.start} onChange={handleInputChange} required/>
+                    <input type="time" name="end" placeholder='end' value={newSession.end} onChange={handleInputChange} required/>
+                    <input type="text" name="link" placeholder='link' value={newSession.link} onChange={handleInputChange} required/>
+                    <select name="course_id" value={newSession.course_id} onChange={handleInputChange} required>
                         <option value="">Select a Course</option>
                         {courses.map(course => (
                             <option key={course.id} value={course.id}>{course.name}</option>
@@ -87,28 +95,28 @@ function Admin({ sessions }) {
                 <table className='admin_table'>
                     <thead className='admin_th'>
                         <tr>
-                            <th>Start Date</th>
-                            <th>End Date</th>
+                            <th>Start Time</th>
+                            <th>End Time</th>
                             <th>Link</th>
                             <th>Course Name</th>
                             <th>Action</th> {/* New column for delete button */}
                         </tr>
                     </thead>
                     <tbody>
-                        {sessions.map(session => {
+                        {sessions.map((session, index) => {
                             const course = courses.find(course => course.id === session.course_id);
                             const courseName = course ? course.name : 'N/A';
 
                             return (
-                                <tr key={session.id}>
+                                <tr key={session.id} className={index % 2 === 0 ? 'even-row' : 'odd-row'}>
                                     <td>{session.start}</td>
                                     <td>{session.end}</td>
-                                    <td><a href={session.link}>lesson link</a></td>
+                                    <td><a href={session.link} target='blank'>lesson link</a></td>
                                     <td>{courseName}</td>
-                                    <td><button onClick={() => handleDelete(session.id)}>Delete</button></td>
+                                    <td><button className='admin_delete_btn' onClick={() => handleDelete(session.id)}>Delete</button></td>
                                 </tr>
                             );
-                        })}
+                        })} 
                     </tbody>
                 </table>
             </div>

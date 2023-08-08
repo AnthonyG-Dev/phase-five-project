@@ -5,6 +5,44 @@ body{
 #chart_container{
     position: relative;
     left: 9%;
-    padding-right: 0;
-    margin-right: 0;
+}
+
+.home_links_div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.home_links{
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    width: 30%;
+    text-align: center;
+}
+
+.home_links:hover{
+    color: white;
+}
+
+#home_link_left{
+    background-image: linear-gradient(to right, #045ebe, #007bff96);
+
+}
+
+#home_link_center {
+    background-image: linear-gradient(to right, #007bff96, #02e6e6);
+}
+
+
+#home_link_right{
+    background-image: linear-gradient(to right, #02e6e6, #00ffff86);
+}
+
+.Dashboard{
+    margin-left: 15%;
 }
