@@ -3,15 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import SignUp from './commponents/SignUp';
 import LogIn from './commponents/LogIn';
-import Header from './commponents/Header';
+// import Header from './commponents/Header';
 import Main from './commponents/Main';
 import Announcement from "./routes/Announcement";
 import Home from "./routes/Home";
 import Calendar from "./routes/Calendar";
 import Feed from "./routes/Feed";
 import Navbar from './commponents/Navbar';
-import Footer from './commponents/Footer';
+// import Footer from './commponents/Footer';
 import Admin from './commponents/Admin';
+import NewComment from './commponents/NewComment';
 
 function App() {
   const [course, setCourse] = useState([]);
@@ -69,6 +70,18 @@ function App() {
   const isLoginPage = location.pathname === '/login';
   const isSignupPage = location.pathname === '/signup';
   const isHomePage = location.pathname === '/';
+  const sendComment =(obj)=>{
+     
+    console.log(obj)
+    fetch('http://127.0.0.1:3000/announcements', {
+      method:"POST",
+      headers :{"content-type":"application/json"},
+      body:JSON.stringify(obj)
+    }).then(res=>res.json()).then(data=>data).catch(err=>console.log(err))
+
+
+  }
+
 
   return (
     <>
@@ -81,7 +94,7 @@ function App() {
         <Route path="/login" element={<LogIn onLoginSuccess={handleLoginSuccess} />} />
         <Route path="/home" element={<Home loggedInUser={loggedInUser}/>} />
         <Route path="/calendar" element={<Calendar />} />
-        <Route path="/announcement" element={<Announcement />} />
+        <Route path="/announcement" element={< NewComment sendComment={sendComment} />} />
         <Route path="/feed" element={ <Feed sessions={sessions} loggedInUser={loggedInUser} course={course} comments={comments} setComments={setComments}  users={users} />}/>
         <Route path="/Admin" element={<Admin sessions={sessions} course={course}/>} />
       </Routes>
