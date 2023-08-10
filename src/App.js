@@ -1,5 +1,6 @@
-
-import './App.css';   
+import './App.css';  
+import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom"; 
 import Footer from './commponents/Footer'; 
 import {Routes, Route, } from 'react-router-dom';
 import SignUp from './commponents/SignUp'; 
@@ -108,4 +109,3 @@ function App() {
 
 
 export default App;
-
