@@ -204,10 +204,11 @@ const Home = ( loggedInUser) => {
   return (
     <>
     <h3 className="Dashboard">Dashboard</h3>
+    <img className="dashboard_image" src={loggedInUser.loggedInUser.avatar}/>
     <div className="home_links_div">
       <a id="home_link_left" className="home_links" href='/calendar'><IoIcons.IoIosPaper /> {loggedInUser.loggedInUser.name}'s Upcoming Events <IoIcons.IoIosPaper /></a>
       <a  id="home_link_center" className="home_links"href='/announcements'><FaIcons.FaBullhorn /> What has {loggedInUser.loggedInUser.name} missed ? <FaIcons.FaBullhorn /></a>
-      <a href="/feed" id="home_link_right" className="home_links"><FaIcons.FaChalkboard />Catch Up With {loggedInUser.loggedInUser.name}'s Classes<FaIcons.FaChalkboard /></a>
+      <a href="/feed" id="home_link_right" className="home_links"><FaIcons.FaChalkboard />Catch Up With {loggedInUser.loggedInUser.name}'s Classes <FaIcons.FaChalkboard /></a>
     </div>
     <div id="chart_container" className="container" >
       <div className="row my-3">
