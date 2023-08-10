@@ -1,0 +1,25 @@
+.welcome {
+  font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 20px;
+  /* Adjust the font size */
+  font-weight: bold;
+  /* Set the font weight */
+  margin-bottom: 10px;
+}
+
+.sync {
+  font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 16px;
+  /* Adjust the font size */
+  font-weight: 300;
+  /* Set the font weight */
+  margin-bottom: 10px;
+}
+
+.login_btn {
+  font-size: 16px;
+  padding: 8px 12px;
+  background-color: #0D6EFD;
+  border: none;
+  border-radius: 8px;
+}
