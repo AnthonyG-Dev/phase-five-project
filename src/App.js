@@ -1,15 +1,17 @@
-import './App.css';
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import SignUp from './commponents/SignUp';
-import LogIn from './commponents/LogIn';
+
+import './App.css';   
+import Footer from './commponents/Footer'; 
+import {Routes, Route, } from 'react-router-dom';
+import SignUp from './commponents/SignUp'; 
+import LogIn from './commponents/LogIn';  
+
 // import Header from './commponents/Header';
 import Main from './commponents/Main';
-import Announcement from "./routes/Announcement";
 import Home from "./routes/Home";
 import Calendar from "./routes/Calendar";
 import Feed from "./routes/Feed";
 import Navbar from './commponents/Navbar';
+
 // import Footer from './commponents/Footer';
 import Admin from './commponents/Admin';
 import NewComment from './commponents/NewComment';
@@ -100,7 +102,10 @@ function App() {
       </Routes>
       {/* <Footer /> */}
     </>
+
   );
 } 
 
+
 export default App;
+

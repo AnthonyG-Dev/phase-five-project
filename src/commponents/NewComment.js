@@ -35,4 +35,6 @@ function NewComment({sendComment}) {
   )
 }
 
+
 export default NewComment
+
