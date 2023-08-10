@@ -13,7 +13,7 @@ export const SidebarData = [
     {
         title: 'Calendar',
         path: '/calendar',
-        icon: <IoIcons.IoIosPaper />,
+        icon: <FaIcons.FaRegCalendarAlt />,
         cName: 'nav-text'
     },
     {

@@ -4,12 +4,15 @@ import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../App.css";
-import { IconContext } from "react-icons";
+import { IconContext } from 'react-icons';
 
-function Navbar() {
+function Navbar(loggedInUser) {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
+
+  // Check if the role is "TM"
+  const isAdmin = loggedInUser.loggedInUser.role === "TM";
 
   return (
     <>
@@ -36,6 +39,22 @@ function Navbar() {
                 </li>
               );
             })}
+            {/* Conditionally add the "Admin" link if the user is "TM" */}
+            {isAdmin && (
+              <li className="nav-text">
+                <Link to="/admin">
+                  <AiIcons.AiOutlinePlus />
+                  <span>Schedule Classes</span>
+                </Link>
+              </li>
+            )}
+            {/* Add the "Logout" link */}
+            <li id="nav_bar_log_out" className="nav-text">
+              <Link to="/login">
+                <AiIcons.AiOutlineLogout />
+                <span>Logout</span>
+              </Link>
+            </li>
           </ul>
         </nav>
       </IconContext.Provider>

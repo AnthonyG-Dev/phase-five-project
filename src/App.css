@@ -1,3 +1,7 @@
+*{
+  overflow-x: none;
+}
+
 .App {
   text-align: center;  
 }
@@ -37,7 +41,7 @@
   }
 }
 
-button {
+.login_btn {
   background-color: blue;    
   margin-right:10px ;
   border-color: blue;
@@ -79,7 +83,7 @@ button {
 
 /* Navbar CSS */
 .navbar {
-  background-color: #ffffff;
+  background-color: white;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -94,7 +98,7 @@ button {
 }
 
 .nav-menu {
-  background-color: #ffffff;
+  background-color: #007799;
   width: 250px;
   height: 100vh;
   display: flex;
@@ -103,6 +107,8 @@ button {
   top: 0;
   left: -100%;
   transition: 850ms;
+  position: fixed;
+  z-index: 100;
 }
 
 .nav-menu.active {
@@ -132,8 +138,12 @@ button {
 }
 
 .nav-text a:hover {
-  background-color: #000000;
+  background-color: #72b6ff;
   color: #fff;
+}
+
+.nav-text a:active {
+  transform: scale(.9);
 }
 
 .nav-menu-items {
@@ -141,7 +151,7 @@ button {
 }
 
 .navbar-toggle {
-  background-color: #ffffff;
+  background-color: #007799;
   width: 100%;
   height: 80px;
   display: flex;
@@ -151,5 +161,13 @@ button {
 
 span {
   margin-left: 16px;
+}
+
+.footer_cont{
+  margin-bottom: -1000px;
+}
+
+#nav_bar_log_out a:hover{
+  background-color: red;
 }
 

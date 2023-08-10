@@ -1,7 +1,48 @@
-import React from 'react';
-import '../css/LogIn.css'
+import React, { useState } from 'react';
+import '../css/LogIn.css';
+import { useNavigate, Link } from "react-router-dom";
 
-const Form = () => {
+const Form = ({onLoginSuccess}) => {
+  const nav = useNavigate()
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // Prepare the data to be sent in the request body
+    const formData = {
+      email: email,
+      password: password,
+    };
+
+    // Make the POST request
+    try {
+      const response = await fetch('http://localhost:3000/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        onLoginSuccess(responseData);
+
+        // Store the login state in localStorage
+        localStorage.setItem('loggedInUser', JSON.stringify(responseData));
+
+        nav('/home');
+      } else {
+        alert('wrong username or password')
+      }
+    } catch (error) {
+      // ... existing code ...
+    }
+  };
+  
   return (
     <>
       {/* Navbar */}
@@ -11,7 +52,7 @@ const Form = () => {
             {/* Navbar Brand */}
             <a href="#" className="navbar-brand">
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKPw8C2wNzWMrulT2hB4qBKC7iYvaiHdhYUw&usqp=CAU"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZue5Qh16KI0YygLmKvL6cTLdL4BGwkUeeAg&usqp=CAU"
                 alt="logo"
                 width="150"
               />
@@ -37,7 +78,7 @@ const Form = () => {
 
           {/* Registration Form */}
           <div className="col-md-7 col-lg-6 ml-auto">
-            <form action="#">
+          <form onSubmit={handleFormSubmit}>
               <div className="row">
 
                 {/* Email Address */}
@@ -53,6 +94,8 @@ const Form = () => {
                     name="email"
                     placeholder="Email Address"
                     className="form-control bg-white border-left-0 border-md"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
 
@@ -72,14 +115,16 @@ const Form = () => {
                     name="password"
                     placeholder="Password"
                     className="form-control bg-white border-left-0 border-md"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                 </div>
 
                 {/* Submit Button */}
                 <div className="form-group col-lg-12 mx-auto mb-0">
-                  <a href="#" className="btn btn-primary btn-block py-2">
-                    <span className="font-weight-bold">Log In</span>
-                  </a>
+                <button type="submit" className="btn btn-primary btn-block py-2">
+                  <span className="font-weight-bold">Log In</span>
+                </button>
                 </div>
 
                 {/* Divider Text */}
@@ -87,18 +132,6 @@ const Form = () => {
                   <div className="border-bottom w-100 ml-5"></div>
                   <span className="px-2 small text-muted font-weight-bold text-muted">OR</span>
                   <div className="border-bottom w-100 mr-5"></div>
-                </div>
-
-                {/* Social Login */}
-                <div className="form-group col-lg-12 mx-auto">
-                  <a href="#" className="btn btn-primary btn-block py-2 btn-facebook">
-                    <i className="fa fa-facebook-f mr-2"></i>
-                    <span className="font-weight-bold">Continue with Facebook</span>
-                  </a>
-                  <a href="#" className="btn btn-primary btn-block py-2 btn-twitter">
-                    <i className="fa fa-twitter mr-2"></i>
-                    <span className="font-weight-bold">Continue with Twitter</span>
-                  </a>
                 </div>
 
                 {/* Already Registered */}

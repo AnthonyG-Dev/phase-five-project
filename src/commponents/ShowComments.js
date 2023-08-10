@@ -12,7 +12,10 @@ function ShowComments() {
     },[])
   return (
     <div>
-        <h3>Announcements </h3>
+
+        <h4>Announcements </h4>
+        <h6>This section is reserved for announcements only</h6>
+
         {comments?.map(comment =>{
             return (
                 <h5 id={comment.id}>{comment.content}</h5>
@@ -23,4 +26,6 @@ function ShowComments() {
   )
 }
 
+
 export default ShowComments
+

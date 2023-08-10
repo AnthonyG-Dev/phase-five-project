@@ -1,0 +1,104 @@
+.admin_table{
+   width: 100%;
+   text-align: center;
+}
+
+.admin_table_div{
+   width: 100%;
+   /* margin-left: 10%; */
+   border-top: 1px solid #dddddd;
+   padding: 1%;
+}
+
+.admin_th{
+   background-color: #dddddd;
+}
+
+.admin_form{
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: left;
+   justify-content: space-around;
+   align-items: center;
+
+}
+
+.admin_form_btn{
+   background-color: #72b6ff;
+   transition: all .4s ease-in-out;
+   border: transparent;
+   padding-left: 1%;
+   padding-right: 1%;
+   padding-top: 0.3%;
+   padding-bottom: 0.3%;
+   border-radius: 5px;
+}
+
+.admin_form_btn:hover{
+   background-color: #007799;
+}
+
+.admin_form_btn:active{
+   transform: scale(0.9);
+   transition: .1s ease-in-out;
+}
+
+.admin_delete_btn{
+   background-color: #f53030;
+   transition: all .4s ease-in-out;
+   border: transparent;
+   padding-left: 5%;
+   padding-right: 5%;
+   padding-top: 0.3%;
+   padding-bottom: 0.3%;
+   border-radius: 5px;
+}
+
+.admin_form input{
+   border-radius: 10px;
+   border: 1px solid #dddddd;
+   padding-top: 0.5%;
+   padding-bottom: 0.5%;
+   padding-left: 1.5%;
+   outline: transparent;
+}
+
+.admin_form select{
+   border-radius: 10px;
+   border: 1px solid #dddddd;
+   padding-top: 0.5%;
+   padding-bottom: 0.5%;
+   padding-left: 0.5%;
+   outline: transparent;
+   background-color: transparent;
+   width: 17%;
+}
+
+.admin_form_div{
+   padding-top: 2%;
+   padding-bottom: 2%;
+   margin-left: 10%;
+   margin-bottom: 2%;
+   border: 1px solid #dddddd;
+   width: 80%;
+   border-radius: 8px;
+}
+
+.admin_form_div h5{
+   margin-left: 2%;
+   margin-bottom: 1%;
+}
+
+td{
+  padding-bottom: 0.5%;
+  padding-top: 0.5%;
+}
+
+/* Alternating row colors */
+.admin_table tr.even-row {
+   background-color: #ffffff; /* Even rows */
+}
+
+.admin_table tr.odd-row {
+   background-color: #f2f2f2; /* Odd rows */
+}

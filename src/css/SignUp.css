@@ -1,0 +1,20 @@
+.custom-btn-style {
+  background-color: purple;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+
+}
+
+.input-group input{
+  height: 40px !important;
+}
+
+.input-group-prepend span{
+  height: 51.5px;
+}
+
+.sign_up_form{
+  margin-left: 30%;
+  width: 100%;
+}

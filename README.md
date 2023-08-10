@@ -32,7 +32,10 @@ Sign in - Perez Kazungu
 Landing Page - Mary Kihara
 
 ## Models
+
 User it will have the name, password , Role is the user a TM or student, and the avatar/ Username
 Course it will have the name of the course eg SDF-FT04, start, end and the description
 Announcement it will have the userId and the content.
 Comment it will have the courseId, announcementId and the content.
+
+
