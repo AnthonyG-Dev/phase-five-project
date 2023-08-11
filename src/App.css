@@ -1,9 +1,9 @@
-*{
+* {
   overflow-x: none;
 }
 
 .App {
-  text-align: center;  
+  text-align: center;
 }
 
 .App-logo {
@@ -36,14 +36,15 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 .login_btn {
-  background-color: blue;    
-  margin-right:10px ;
+  background-color: blue;
+  margin-right: 10px;
   border-color: blue;
   border-radius: 20px;
   color: white;
@@ -52,12 +53,14 @@
   text-decoration: none;
   display: inline-flex;
   font-size: 16px;
-}  
+}
 
 
 .App-header img {
-  width: 200px; /* Set the desired width (adjust as needed) */
-  height: auto; /* The height will adjust automatically to maintain the aspect ratio */
+  width: 200px;
+  /* Set the desired width (adjust as needed) */
+  height: auto;
+  /* The height will adjust automatically to maintain the aspect ratio */
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
@@ -159,9 +162,10 @@ span {
   margin-left: 16px;
 }
 
-.footer_cont{
+.footer_cont {
   margin-bottom: -1000px;
 }
 
-#nav_bar_log_out
-
+#nav_bar_log_out:hover {
+  color: red;
+}
